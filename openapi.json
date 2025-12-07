@@ -413,7 +413,7 @@
           "devices"
         ],
         "summary": "Device Settings",
-        "description": "Settings device.",
+        "description": "Update device settings.",
         "operationId": "device_settings_greenhouses__greenhouse_id__devices__device_name__settings_post",
         "security": [
           {
@@ -454,7 +454,9 @@
             "description": "Successful Response",
             "content": {
               "application/json": {
-                "schema": {}
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseOK"
+                }
               }
             }
           },
