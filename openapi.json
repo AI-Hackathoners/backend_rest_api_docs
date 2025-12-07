@@ -336,7 +336,7 @@
         }
       }
     },
-    "/greenhouses/devices/{device_name}/switch/{device_state}": {
+    "/greenhouses/{greenhouse_id}/devices/{device_name}/switch/{device_state}": {
       "post": {
         "tags": [
           "greenhouses",
@@ -344,7 +344,7 @@
         ],
         "summary": "Device Switch On Off",
         "description": "Switch off/on device.",
-        "operationId": "device_switch_on_off_greenhouses_devices__device_name__switch__device_state__post",
+        "operationId": "device_switch_on_off_greenhouses__greenhouse_id__devices__device_name__switch__device_state__post",
         "security": [
           {
             "HTTPBearer": []
@@ -374,7 +374,7 @@
           },
           {
             "name": "greenhouse_id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
@@ -406,7 +406,7 @@
         }
       }
     },
-    "/greenhouses/devices/{device_name}/settings": {
+    "/greenhouses/{greenhouse_id}/devices/{device_name}/settings": {
       "post": {
         "tags": [
           "greenhouses",
@@ -414,7 +414,7 @@
         ],
         "summary": "Device Settings",
         "description": "Settings device.",
-        "operationId": "device_settings_greenhouses_devices__device_name__settings_post",
+        "operationId": "device_settings_greenhouses__greenhouse_id__devices__device_name__settings_post",
         "security": [
           {
             "HTTPBearer": []
@@ -431,7 +431,7 @@
           },
           {
             "name": "greenhouse_id",
-            "in": "query",
+            "in": "path",
             "required": true,
             "schema": {
               "type": "integer",
@@ -520,7 +520,8 @@
           "air",
           "humidity",
           "temperature",
-          "moisture"
+          "moisture",
+          "led"
         ],
         "title": "DeviceName"
       },
