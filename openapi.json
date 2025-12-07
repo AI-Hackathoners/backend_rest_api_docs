@@ -572,15 +572,52 @@
             "type": "string",
             "format": "date-time",
             "title": "Created At"
+          },
+          "stats": {
+            "$ref": "#/components/schemas/GreenhouseStats"
           }
         },
         "type": "object",
         "required": [
           "name",
           "id",
-          "created_at"
+          "created_at",
+          "stats"
         ],
         "title": "GreenhouseRead"
+      },
+      "GreenhouseStats": {
+        "properties": {
+          "air": {
+            "type": "string",
+            "title": "Air"
+          },
+          "light": {
+            "type": "string",
+            "title": "Light"
+          },
+          "humidity": {
+            "type": "string",
+            "title": "Humidity"
+          },
+          "temperature": {
+            "type": "string",
+            "title": "Temperature"
+          },
+          "moisture": {
+            "type": "string",
+            "title": "Moisture"
+          }
+        },
+        "type": "object",
+        "required": [
+          "air",
+          "light",
+          "humidity",
+          "temperature",
+          "moisture"
+        ],
+        "title": "GreenhouseStats"
       },
       "GreenhouseUpdate": {
         "properties": {
