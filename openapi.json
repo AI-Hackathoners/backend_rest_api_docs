@@ -1035,16 +1035,53 @@
               }
             ],
             "title": "Moisture"
+          },
+          "soil_water_pump": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Soil Water Pump"
+          },
+          "air_water_pump": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Air Water Pump"
+          },
+          "led": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Led"
+          },
+          "fan": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fan"
           }
         },
         "type": "object",
-        "required": [
-          "air",
-          "light",
-          "humidity",
-          "temperature",
-          "moisture"
-        ],
         "title": "GreenhouseStats"
       },
       "GreenhouseUpdate": {
