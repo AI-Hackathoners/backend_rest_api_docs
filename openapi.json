@@ -1101,6 +1101,17 @@
               }
             ],
             "title": "Fan"
+          },
+          "ai_mode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ai Mode"
           }
         },
         "type": "object",
