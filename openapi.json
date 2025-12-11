@@ -1,8 +1,8 @@
 {
   "openapi": "3.1.0",
   "info": {
-    "title": "Smart Greenhouse IoT System API",
-    "description": "Backend API for Smart Greenhouse IoT System",
+    "title": "AgroAI Smart Greenhouse API System",
+    "description": "Backend API for AgroAI Smart Greenhouse API System",
     "version": "0.1.0"
   },
   "paths": {
@@ -103,6 +103,53 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/UserRead"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/auth/profile/edit": {
+      "put": {
+        "tags": [
+          "auth"
+        ],
+        "summary": "Edit Profile",
+        "description": "Edit user profile.",
+        "operationId": "edit_profile_auth_profile_edit_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserUpdate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserUpdate"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
                 }
               }
             }
@@ -336,6 +383,66 @@
         }
       }
     },
+    "/greenhouses/{greenhouse_id}/ai/switch/{state}": {
+      "post": {
+        "tags": [
+          "greenhouses"
+        ],
+        "summary": "Switch Mode Ai Control",
+        "operationId": "switch_mode_ai_control_greenhouses__greenhouse_id__ai_switch__state__post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "state",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "on",
+                "off"
+              ],
+              "type": "string",
+              "title": "State"
+            }
+          },
+          {
+            "name": "greenhouse_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Greenhouse Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/greenhouses/{greenhouse_id}/devices/{device_name}/switch/{device_state}": {
       "post": {
         "tags": [
@@ -343,7 +450,6 @@
           "devices"
         ],
         "summary": "Device Switch On Off",
-        "description": "Switch off/on device.",
         "operationId": "device_switch_on_off_greenhouses__greenhouse_id__devices__device_name__switch__device_state__post",
         "security": [
           {
@@ -388,7 +494,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseOK"
+                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
                 }
               }
             }
@@ -455,7 +561,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ResponseOK"
+                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
                 }
               }
             }
@@ -523,7 +629,8 @@
           "humidity",
           "temperature",
           "moisture",
-          "led"
+          "led",
+          "fan"
         ],
         "title": "DeviceName"
       },
@@ -589,23 +696,58 @@
       "GreenhouseStats": {
         "properties": {
           "air": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Air"
           },
           "light": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Light"
           },
           "humidity": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Humidity"
           },
           "temperature": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Temperature"
           },
           "moisture": {
-            "type": "string",
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
             "title": "Moisture"
           }
         },
@@ -661,17 +803,6 @@
           "user"
         ],
         "title": "LoginResponse"
-      },
-      "ResponseOK": {
-        "properties": {
-          "ok": {
-            "type": "boolean",
-            "title": "Ok",
-            "default": true
-          }
-        },
-        "type": "object",
-        "title": "ResponseOK"
       },
       "UserCreate": {
         "properties": {
@@ -766,6 +897,30 @@
         ],
         "title": "UserRead"
       },
+      "UserUpdate": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "last_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "first_name"
+        ],
+        "title": "UserUpdate"
+      },
       "ValidationError": {
         "properties": {
           "loc": {
@@ -798,6 +953,17 @@
           "type"
         ],
         "title": "ValidationError"
+      },
+      "app__api__routes__device__ResponseOK": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "default": true
+          }
+        },
+        "type": "object",
+        "title": "ResponseOK"
       }
     },
     "securitySchemes": {
