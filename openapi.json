@@ -943,6 +943,17 @@
           "name": {
             "type": "string",
             "title": "Name"
+          },
+          "ai_mode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ai Mode"
           }
         },
         "type": "object",
@@ -956,6 +967,17 @@
           "name": {
             "type": "string",
             "title": "Name"
+          },
+          "ai_mode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ai Mode"
           },
           "id": {
             "type": "integer",
@@ -1089,6 +1111,17 @@
           "name": {
             "type": "string",
             "title": "Name"
+          },
+          "ai_mode": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ai Mode"
           }
         },
         "type": "object",
