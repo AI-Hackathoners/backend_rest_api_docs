@@ -116,13 +116,13 @@
       }
     },
     "/auth/profile/edit": {
-      "put": {
+      "patch": {
         "tags": [
           "auth"
         ],
         "summary": "Edit Profile",
         "description": "Edit user profile.",
-        "operationId": "edit_profile_auth_profile_edit_put",
+        "operationId": "edit_profile_auth_profile_edit_patch",
         "requestBody": {
           "content": {
             "application/json": {
@@ -425,7 +425,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
+                  "$ref": "#/components/schemas/app__api__routes__plant__ResponseOK"
                 }
               }
             }
@@ -494,7 +494,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
+                  "$ref": "#/components/schemas/app__api__routes__plant__ResponseOK"
                 }
               }
             }
@@ -561,7 +561,293 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/app__api__routes__device__ResponseOK"
+                  "$ref": "#/components/schemas/app__api__routes__plant__ResponseOK"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/greenhouses/{greenhouse_id}/plants/plant-types": {
+      "get": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Get Plant Types",
+        "description": "Return a list of all available plant types.",
+        "operationId": "get_plant_types_greenhouses__greenhouse_id__plants_plant_types_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PlantType"
+                  },
+                  "type": "array",
+                  "title": "Response Get Plant Types Greenhouses  Greenhouse Id  Plants Plant Types Get"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ]
+      }
+    },
+    "/greenhouses/{greenhouse_id}/plants": {
+      "post": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Create Plant",
+        "description": "Create a new plant.",
+        "operationId": "create_plant_greenhouses__greenhouse_id__plants_post",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "greenhouse_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Greenhouse Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlantCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "List Plants",
+        "description": "List all plants of greenhouse.",
+        "operationId": "list_plants_greenhouses__greenhouse_id__plants_get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "greenhouse_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Greenhouse Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Plant"
+                  },
+                  "title": "Response List Plants Greenhouses  Greenhouse Id  Plants Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/greenhouses/{greenhouse_id}/plants/{plant_id}": {
+      "get": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Get Plant",
+        "operationId": "get_plant_greenhouses__greenhouse_id__plants__plant_id__get",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "plant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Plant Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Edit Plant",
+        "operationId": "edit_plant_greenhouses__greenhouse_id__plants__plant_id__patch",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "plant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Plant Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlantUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlantRead"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "plants"
+        ],
+        "summary": "Delete Plant",
+        "operationId": "delete_plant_greenhouses__greenhouse_id__plants__plant_id__delete",
+        "security": [
+          {
+            "HTTPBearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "plant_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "title": "Plant Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/app__api__routes__plant__ResponseOK"
                 }
               }
             }
@@ -804,6 +1090,212 @@
         ],
         "title": "LoginResponse"
       },
+      "Plant": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PlantType"
+          },
+          "variety": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variety"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "greenhouse_id": {
+            "type": "integer",
+            "title": "Greenhouse Id"
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date-time",
+            "title": "Created At"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "greenhouse_id"
+        ],
+        "title": "Plant"
+      },
+      "PlantCreate": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PlantType"
+          },
+          "variety": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variety"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type"
+        ],
+        "title": "PlantCreate"
+      },
+      "PlantRead": {
+        "properties": {
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "type": {
+            "$ref": "#/components/schemas/PlantType"
+          },
+          "variety": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Variety"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "greenhouse_id": {
+            "type": "integer",
+            "title": "Greenhouse Id"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "type",
+          "id",
+          "greenhouse_id"
+        ],
+        "title": "PlantRead"
+      },
+      "PlantType": {
+        "type": "string",
+        "enum": [
+          "tomato",
+          "cucumber",
+          "lettuce",
+          "pepper",
+          "spinach",
+          "kale",
+          "eggplant",
+          "zucchini",
+          "broccoli",
+          "cauliflower",
+          "strawberry",
+          "blueberry",
+          "raspberry",
+          "melon",
+          "watermelon",
+          "basil",
+          "mint",
+          "parsley",
+          "cilantro",
+          "rosemary",
+          "thyme",
+          "oregano",
+          "arugula",
+          "bok_choy",
+          "microgreens",
+          "rose",
+          "tulip",
+          "orchid",
+          "sunflower",
+          "mushroom",
+          "chili",
+          "ginger",
+          "turmeric"
+        ],
+        "title": "PlantType"
+      },
+      "PlantUpdate": {
+        "properties": {
+          "first_name": {
+            "type": "string",
+            "title": "First Name"
+          },
+          "last_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Name"
+          }
+        },
+        "type": "object",
+        "required": [
+          "first_name"
+        ],
+        "title": "PlantUpdate"
+      },
       "UserCreate": {
         "properties": {
           "email": {
@@ -954,7 +1446,7 @@
         ],
         "title": "ValidationError"
       },
-      "app__api__routes__device__ResponseOK": {
+      "app__api__routes__plant__ResponseOK": {
         "properties": {
           "ok": {
             "type": "boolean",
