@@ -6,14 +6,14 @@
     "version": "0.1.0"
   },
   "paths": {
-    "/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": [
           "auth"
         ],
         "summary": "Register",
         "description": "Register a new user. **This endpoint is disabled temporarily!**",
-        "operationId": "register_auth_register_post",
+        "operationId": "register_api_auth_register_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -46,14 +46,14 @@
         }
       }
     },
-    "/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": [
           "auth"
         ],
         "summary": "Login",
         "description": "Login and get access token. Use `test1@example.com`, pass `test`",
-        "operationId": "login_auth_login_post",
+        "operationId": "login_api_auth_login_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -88,14 +88,14 @@
         }
       }
     },
-    "/auth/whoami": {
+    "/api/auth/whoami": {
       "get": {
         "tags": [
           "auth"
         ],
         "summary": "Whoami",
         "description": "Get current User.",
-        "operationId": "whoami_auth_whoami_get",
+        "operationId": "whoami_api_auth_whoami_get",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -115,14 +115,14 @@
         ]
       }
     },
-    "/auth/profile/edit": {
+    "/api/auth/profile/edit": {
       "patch": {
         "tags": [
           "auth"
         ],
         "summary": "Edit Profile",
         "description": "Edit user profile.",
-        "operationId": "edit_profile_auth_profile_edit_patch",
+        "operationId": "edit_profile_api_auth_profile_edit_patch",
         "requestBody": {
           "content": {
             "application/json": {
@@ -162,14 +162,14 @@
         ]
       }
     },
-    "/greenhouses": {
+    "/api/greenhouses": {
       "get": {
         "tags": [
           "greenhouses"
         ],
         "summary": "List Greenhouses",
         "description": "List all greenhouses owned by the current user.",
-        "operationId": "list_greenhouses_greenhouses_get",
+        "operationId": "list_greenhouses_api_greenhouses_get",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -180,7 +180,7 @@
                     "$ref": "#/components/schemas/GreenhouseRead"
                   },
                   "type": "array",
-                  "title": "Response List Greenhouses Greenhouses Get"
+                  "title": "Response List Greenhouses Api Greenhouses Get"
                 }
               }
             }
@@ -198,7 +198,7 @@
         ],
         "summary": "Create Greenhouse",
         "description": "Create a new greenhouse.",
-        "operationId": "create_greenhouse_greenhouses_post",
+        "operationId": "create_greenhouse_api_greenhouses_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -238,13 +238,13 @@
         ]
       }
     },
-    "/greenhouses/{greenhouse_id}": {
+    "/api/greenhouses/{greenhouse_id}": {
       "get": {
         "tags": [
           "greenhouses"
         ],
         "summary": "Get Greenhouse",
-        "operationId": "get_greenhouse_greenhouses__greenhouse_id__get",
+        "operationId": "get_greenhouse_api_greenhouses__greenhouse_id__get",
         "security": [
           {
             "HTTPBearer": []
@@ -289,7 +289,7 @@
           "greenhouses"
         ],
         "summary": "Edit Greenhouse",
-        "operationId": "edit_greenhouse_greenhouses__greenhouse_id__patch",
+        "operationId": "edit_greenhouse_api_greenhouses__greenhouse_id__patch",
         "security": [
           {
             "HTTPBearer": []
@@ -344,7 +344,7 @@
           "greenhouses"
         ],
         "summary": "Delete Greenhouse",
-        "operationId": "delete_greenhouse_greenhouses__greenhouse_id__delete",
+        "operationId": "delete_greenhouse_api_greenhouses__greenhouse_id__delete",
         "security": [
           {
             "HTTPBearer": []
@@ -383,13 +383,13 @@
         }
       }
     },
-    "/greenhouses/{greenhouse_id}/ai/switch/{state}": {
+    "/api/greenhouses/{greenhouse_id}/ai/switch/{state}": {
       "post": {
         "tags": [
           "greenhouses"
         ],
         "summary": "Switch Mode Ai Control",
-        "operationId": "switch_mode_ai_control_greenhouses__greenhouse_id__ai_switch__state__post",
+        "operationId": "switch_mode_ai_control_api_greenhouses__greenhouse_id__ai_switch__state__post",
         "security": [
           {
             "HTTPBearer": []
@@ -443,14 +443,14 @@
         }
       }
     },
-    "/greenhouses/{greenhouse_id}/devices/{device_name}/switch/{device_state}": {
+    "/api/greenhouses/{greenhouse_id}/devices/{device_name}/switch/{device_state}": {
       "post": {
         "tags": [
           "greenhouses",
           "devices"
         ],
         "summary": "Device Switch On Off",
-        "operationId": "device_switch_on_off_greenhouses__greenhouse_id__devices__device_name__switch__device_state__post",
+        "operationId": "device_switch_on_off_api_greenhouses__greenhouse_id__devices__device_name__switch__device_state__post",
         "security": [
           {
             "HTTPBearer": []
@@ -512,7 +512,7 @@
         }
       }
     },
-    "/greenhouses/{greenhouse_id}/devices/{device_name}/settings": {
+    "/api/greenhouses/{greenhouse_id}/devices/{device_name}/settings": {
       "post": {
         "tags": [
           "greenhouses",
@@ -520,7 +520,7 @@
         ],
         "summary": "Device Settings",
         "description": "Update device settings.",
-        "operationId": "device_settings_greenhouses__greenhouse_id__devices__device_name__settings_post",
+        "operationId": "device_settings_api_greenhouses__greenhouse_id__devices__device_name__settings_post",
         "security": [
           {
             "HTTPBearer": []
@@ -579,14 +579,14 @@
         }
       }
     },
-    "/greenhouses/{greenhouse_id}/plants/plant-types": {
+    "/api/greenhouses/{greenhouse_id}/plants/plant-types": {
       "get": {
         "tags": [
           "plants"
         ],
         "summary": "Get Plant Types",
         "description": "Return a list of all available plant types.",
-        "operationId": "get_plant_types_greenhouses__greenhouse_id__plants_plant_types_get",
+        "operationId": "get_plant_types_api_greenhouses__greenhouse_id__plants_plant_types_get",
         "responses": {
           "200": {
             "description": "Successful Response",
@@ -597,7 +597,7 @@
                     "$ref": "#/components/schemas/PlantType"
                   },
                   "type": "array",
-                  "title": "Response Get Plant Types Greenhouses  Greenhouse Id  Plants Plant Types Get"
+                  "title": "Response Get Plant Types Api Greenhouses  Greenhouse Id  Plants Plant Types Get"
                 }
               }
             }
@@ -610,14 +610,14 @@
         ]
       }
     },
-    "/greenhouses/{greenhouse_id}/plants": {
+    "/api/greenhouses/{greenhouse_id}/plants": {
       "post": {
         "tags": [
           "plants"
         ],
         "summary": "Create Plant",
         "description": "Create a new plant.",
-        "operationId": "create_plant_greenhouses__greenhouse_id__plants_post",
+        "operationId": "create_plant_api_greenhouses__greenhouse_id__plants_post",
         "security": [
           {
             "HTTPBearer": []
@@ -673,7 +673,7 @@
         ],
         "summary": "List Plants",
         "description": "List all plants of greenhouse.",
-        "operationId": "list_plants_greenhouses__greenhouse_id__plants_get",
+        "operationId": "list_plants_api_greenhouses__greenhouse_id__plants_get",
         "security": [
           {
             "HTTPBearer": []
@@ -700,7 +700,7 @@
                   "items": {
                     "$ref": "#/components/schemas/Plant"
                   },
-                  "title": "Response List Plants Greenhouses  Greenhouse Id  Plants Get"
+                  "title": "Response List Plants Api Greenhouses  Greenhouse Id  Plants Get"
                 }
               }
             }
@@ -718,13 +718,13 @@
         }
       }
     },
-    "/greenhouses/{greenhouse_id}/plants/{plant_id}": {
+    "/api/greenhouses/{greenhouse_id}/plants/{plant_id}": {
       "get": {
         "tags": [
           "plants"
         ],
         "summary": "Get Plant",
-        "operationId": "get_plant_greenhouses__greenhouse_id__plants__plant_id__get",
+        "operationId": "get_plant_api_greenhouses__greenhouse_id__plants__plant_id__get",
         "security": [
           {
             "HTTPBearer": []
@@ -769,7 +769,7 @@
           "plants"
         ],
         "summary": "Edit Plant",
-        "operationId": "edit_plant_greenhouses__greenhouse_id__plants__plant_id__patch",
+        "operationId": "edit_plant_api_greenhouses__greenhouse_id__plants__plant_id__patch",
         "security": [
           {
             "HTTPBearer": []
@@ -824,7 +824,7 @@
           "plants"
         ],
         "summary": "Delete Plant",
-        "operationId": "delete_plant_greenhouses__greenhouse_id__plants__plant_id__delete",
+        "operationId": "delete_plant_api_greenhouses__greenhouse_id__plants__plant_id__delete",
         "security": [
           {
             "HTTPBearer": []
